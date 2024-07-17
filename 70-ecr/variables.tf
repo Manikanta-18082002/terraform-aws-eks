@@ -11,14 +11,5 @@ variable "common_tags" {
     Project = "expense"
     Environment = "dev"
     Terraform = "true"
-    Component = "ingress-alb"
   }
 }
-
-variable "zone_name" {
-  default = "dawsmani.site"
-}
-
-variable "zone_id" {
-  default = "Z0518893283P6UJCL06B2"
-} # Individual Zone ID's

@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket = "mani-remote-state"
-    key    = "expense-dev-vpc"
+    key    = "expense-dev-ecr"
     region = "us-east-1"
     dynamodb_table = "remote-state-locking"
   }

@@ -9,7 +9,7 @@ module "db" {
 }
 
 module "ingress" {
-  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  source         = "git::https://github.com/Manikanta-18082002/terraform-aws-security-group.git?ref=main"
   project_name = var.project_name
   environment = var.environment
   sg_description = "SG for Ingress controller"
@@ -19,7 +19,7 @@ module "ingress" {
 }
 
 module "cluster" {
-  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  source         = "git::https://github.com/Manikanta-18082002/terraform-aws-security-group.git?ref=main"
   project_name = var.project_name
   environment = var.environment
   sg_description = "SG for EKS Control plane"
@@ -29,7 +29,7 @@ module "cluster" {
 }
 
 module "node" {
-  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  source         = "git::https://github.com/Manikanta-18082002/terraform-aws-security-group.git?ref=main"
   project_name = var.project_name
   environment = var.environment
   sg_description = "SG for EKS node"
@@ -105,7 +105,7 @@ resource "aws_security_group_rule" "node_vpc" {
   from_port         = 0
   to_port           = 65535
   protocol          = "-1" # All traffic
-  cidr_blocks = ["10.0.0.0/16"]
+  cidr_blocks = ["10.0.0.0/16"] # VPC CIDR --> Due to this No Security defect
   security_group_id = module.node.sg_id
 }
 
@@ -158,4 +158,3 @@ resource "aws_security_group_rule" "node_ingress" {
   source_security_group_id = module.ingress.sg_id
   security_group_id = module.node.sg_id
 }
-

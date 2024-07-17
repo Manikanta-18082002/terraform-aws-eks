@@ -5,7 +5,7 @@ resource "aws_lb" "ingress_alb" {
   security_groups    = [data.aws_ssm_parameter.ingress_sg_id.value]
   subnets            = split(",", data.aws_ssm_parameter.public_subnet_ids.value)
 
-  enable_deletion_protection = false
+  enable_deletion_protection = false #--> to delete this after # true generally 
 
   tags = merge(
     var.common_tags,
@@ -77,7 +77,7 @@ resource "aws_lb_listener_rule" "frontend" {
 
   condition {
     host_header {
-      # expense-dev.daws78s.online --> frontend pod
+      # expense-dev.dawsmani.site --> frontend pod
       values = ["expense-${var.environment}.${var.zone_name}"]
     }
   }
